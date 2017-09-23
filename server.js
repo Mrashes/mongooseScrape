@@ -18,6 +18,8 @@ mongoose.Promise = Promise;
 // Initialize Express
 var app = express();
 
+port = process.env.PORT || 3000
+
 // Use morgan and body parser with our app
 app.use(bodyParser.urlencoded({
   extended: false
@@ -27,7 +29,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/cheerioScrape");
+mongoose.connect("mongodb://heroku_sj7544z2:ebd30dpl4jg428n057dk54q5kd@ds149124.mlab.com:49124/heroku_sj7544z2");
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -143,10 +145,7 @@ app.post("/articles/:id", function(req, res) {
 });
 
 
-
-
-
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("App running on port 3000!");
 });
